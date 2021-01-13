@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChalkPix - Recorder</title>
+    <script src="https://kit.fontawesome.com/a27c9bb6d6.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+    
+    <link rel="stylesheet" href="./chalkpix_styles.css">
+</head>
+<body>
+    <nav>
+      <ul>
+        <li style="border-right: 1px solid gray;">
+          <h3>ChalkPix - Recorder</h3>
+        </li>
+        <li style="justify-self: right;">
+          <button id="navButton">
+            <a href="./chalkpix_player.html" target="_blank">Go to Player</a>
+          </button>
+        </li>
+        <li style="justify-self: right;">
+          <h5>Meeting Id: <span id="myId">Fetching...</span></h5>
+        </li>
+      </ul>
+    </nav>
+    <br><br><br><br><br>
+    <div id="master-container">
+        <div id="container"></div>
+    </div>
+    
+    <div id="buttons">
+        <button id="pointer-btn" title="Pointer"><i class="fas fa-mouse-pointer"></i></button>
+        <button id="circle-btn" title="Add circle"><i class="far fa-circle"></i></button>
+        <button id="rectangle-btn" title="Add rectangle"><i class="far fa-square"></i></button>
+        <button id="brush-btn" title="Brush"><i class="fas fa-pencil-alt"></i></button>
+        <button id="eraser-btn" title="Eraser"><i class="fas fa-eraser"></i></button>
+        <button id="text-btn" title="Text"><i class="fas fa-font"></i></button>
+        <button id="laser-btn" title="Laser"><i class="fas fa-hand-pointer"></i></button>
+    </div>
+    <div id="menu">
+        <div>
+          <div id="row-alignment">
+            <button id="left-align"><i class="fas fa-align-left"></i></button>
+            <button id="center-align"><i class="fas fa-align-center"></i></button>
+            <button id="right-align"><i class="fas fa-align-right"></i></button>
+          </div>
+          <div id="row-decoration">
+            <button id="bold-text"><i class="fas fa-bold"></i></button>
+            <button id="italic-text"><i class="fas fa-italic"></i></button>
+            <button id="underline-text"><i class="fas fa-underline"></i></button>
+            <button id="strikethrough-text"><i class="fas fa-strikethrough"></i></button>
+          </div>
+          
+          <button id="move-layer-up">Move layer up</button>
+          <button id="move-layer-down">Move layer down</button>
+          <button id="move-to-top">Move to top layer</button>
+          <button id="move-to-bottom">Move to botton layer</button>
+          <button id="fill-color">Fill Color</button>
+          <button id="stroke-color">Stroke Color</button>
+          <button id="delete-shape">Delete</button>
+        </div>
+      </div>
+      <div id="recorder">
+        <button id="recordBtn"><i class="fas fa-compact-disc"></i>
+          &nbsp;&nbsp;<span id="startBtn">Start Recording/Streaming</span></button>
+        <!-- <audio id="audioRecord" hidden></audio> -->
+        <p>Status: <span id="status">Idle</span></p>
+      </div>
+
+      <div id="downloadSec">
+        <button id="cpxDownload" disabled="true"><i class="fas fa-download"></i>
+          &nbsp;&nbsp;Download .cpx file</button>
+      </div>
+      <br><br><br>
+      <small>Created by Rahul Valluri. Last updated - Jan, 2021.</small>
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> -->
+
+<script src="https://unpkg.com/vanilla-picker@2"></script>
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<script src="https://unpkg.com/konva@7.2.2/konva.min.js"></script>
+<script src="recorder_js.js"></script>
+</html>

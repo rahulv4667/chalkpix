@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChalkPix - About</title>
+    <!-- <script src="https://kit.fontawesome.com/a27c9bb6d6.js" crossorigin="anonymous"></script> -->
+    <style>
+        body {
+            margin: 0 auto;
+            padding: 0 auto;
+            /* text-align: center; */
+            background-color:  #212529;
+            max-width: 100vw;
+            max-height: 100vh;
+            color:white;
+            /* font-family:Arial, Helvetica, sans-serif; */
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 100;
+        }
+        nav {
+            border-bottom: 1px solid gray;
+            orientation: landscape;
+            /* position: sticky; */
+            position:fixed;
+            width: 100%;
+            z-index: 1000;
+            background-color: #212529;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            /* position: fixed; */
+            /* justify-content:left; */
+            align-items: center;
+        }
+
+        nav li {
+            /* float: left; */
+            display: flex;
+            padding-left: 2%;
+            padding-right: 2%;
+            justify-self: right;
+            justify-items: right;
+            justify-content: right;
+            /* border-right: 1px solid gray; */
+        }
+        nav li #navButton {
+            vertical-align: middle;
+            text-align: center;
+            justify-self: center;
+            align-self: center;
+        }
+
+        #navButton, #cpxDownload {
+            border-radius: 5px;
+            border: none;
+            background-color: green;
+            padding: 10px;
+            color: white;
+            text-decoration-color: white;
+        }
+        #navButton a{ 
+            text-decoration: none;
+            color: white;
+        }
+
+        #navButton:hover, #cpxDownload:hover {
+            transition-duration: 500ms;
+            background-color: aliceblue;
+            color:black;
+        }
+
+        #navButton:hover a {
+            transition-duration: 500ms;
+            color: black;
+        }
+        .recorder {
+            background-color: red;
+            border:none;
+            border-radius: 5px;
+            text-decoration: none;
+            color:white;
+            padding: 10px;
+        }
+        .recorder a{
+            color:white;
+            text-decoration: none;
+        }
+        .recorder a:hover {
+            color:black;
+        }
+        .recorder:hover {
+            transition-duration: 500ms;
+            background-color: white;
+            color:black;
+        }
+        .container {
+            margin: 2%;
+        }
+        code {
+            background-color: black;
+            padding-left: 2px;
+            padding-right: 2px;
+            /* color: black; */
+        }
+        .font-weight-bold {
+            font-weight: bold;
+        }
+        small {
+            display: flex;
+            border-top: 1px solid gray;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+      <ul>
+        <li style="border-right: 1px solid gray;">
+          <h3>ChalkPix - About</h3>
+        </li>
+        <li style="justify-self: right;">
+          <button id="navButton">
+            <a href="./chalkpix_player.html" target="_blank">Go to Player</a>
+          </button>
+        </li>
+        <li style="justify-self: right;">
+            <button class="recorder">
+              <a href="./chalkpix_recorder.html" target="_blank">Go to Recorder</a>
+            </button>
+          </li>
+      </ul>
+    </nav>
+    <br><br><br><br><br>
+    <div class="container">
+        <h2>
+            What is ChalkPix?
+        </h2>
+        <h4>The Problem and the Solution</h4>
+
+        <p>
+            Online classes are always recorded and streamed in traditional video format. 
+            While that is fine in many cases, this format makes it hard for people with low bandwidth 
+            to have a bufferless experience and also in the current scenario of meetings and live classes 
+            with hundreds of people in a single call, it gets very network heavy and lag between video and 
+            audio becomes an issue.
+        </p>
+
+        <p>
+            One optimisation we can do in this area is to make specialised formats for specific 
+            methodologies of teachings. Even though there have been many advancements in teaching 
+            methodologies, the method of writing on board and teaching never gets old. Whether it 
+            be deep learning lectures by Andrew Ng or additions lecture by convent school teacher,
+             most people prefer using pen tool to teach even in online mode. There is no point in trying 
+             to screencast every pixel of the recorded screen to all the viewers in this kind of teaching. 
+        </p>
+
+        <p>
+            Although efficient video coding algorithms exist to compress the video, 
+            we believe it would more efficient to just stream mouse movements and events of 
+            the whiteboard instead of screenshare. While we haven't done any benchmark tests, 
+            we believe this will lessen the data to be stored for whiteboard lectures dramatically and 
+            help give the best experience across all devices irrespective of the quality of stream.
+        </p>
+        <br>
+        <br>
+        <h2>Existing Solutions</h2>
+
+        <p>
+            Whiteboard solutions aren't a new thing. Zoom supports it but the recording is still a video. 
+            Microsoft Teams supports it but has no option of recording the session yet. Although these 
+            solutions exist, they work differently from how we are thinking of providing the service. 
+        </p>
+
+        <p>
+            The only product that seems to be close to what we are trying to build is an Indian ed-tech 
+            startup 'Vedantu'. Although they haven't revealed the internal workings of the app, we believe 
+            they are following a similar approach based on the vague terms from their tech blogs. 
+        </p>
+
+        <p>
+            Even with these solutions, we believe having a open source solution that can be plugged 
+            with any kind of software in any kind of purpose wouldn't harm.
+        </p>
+
+        <br><br>
+        <h2>Roadmap</h2>
+        <ul>
+            <li>
+                Create a data format(.cpx) that efficiently stores the mouse movements and events. The format must be
+                usable for both streaming and offline viewing purposes.
+            </li>
+            
+            <li>
+                Create a full-fledged whiteboard with capability to store a recording in .cpx format or stream to
+                a certain registered URL.
+            </li>
+            
+            <li>
+                Create a web component <code>chalk-pix</code> that works similar to other HTML media elements like
+                <code>video</code> and <code>audio</code>. The <code>chalk-pix</code> can take a source link to 
+                .cpx file that is present on a server or a stream URL of a live recording. This is similar to media
+                elements.
+            </li>
+            
+            <li>
+                Dicey decision(s): 
+                <ul>
+                    <li>
+                        Integrate image, gif, video in .cpx format
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <br><br>
+        <h2>Concepts borrowed from</h2>
+        <br>
+        <ul>
+            <li class="my-2">
+                        <span class="font-weight-bold">InkML</span>: This is an open standard for ink based streaming and 
+                        recording that was last updated in 2011.
+                        Most of the concepts required to build <code>chalk-pix</code> are already covered in this specification.
+                        But there is no industry standard implementation that exists or to refer to and also many browsers
+                        aren't supporting it natively. Even with them, the specification doesn't deal with modern
+                        needs like polygon shapes, in-board images, slides etc.
+                    </li>
+                    
+                    <li class="my-2">
+                        <span class="font-weight-bold">MPEG DASH</span>: This shouldn't come as a surprise since 
+                        <code>chalk-pix</code> deals with streaming and there is no better streaming standard currently
+                        than DASH(Dynamic Adaptive Streaming over HTTP). While there isn't much adpative streaming needed
+                        when only pen and shapes are used, there may be a requirement when in-board images and videos are 
+                        used. Also, it is required to adapt audio quality if the bandwidth is too poor.
+                    </li>
+        </ul>
+        <br><br>
+        <h2>How to test the current progress</h2>
+        <ul>
+            <li>Go to 'Recorder' by clicking on the button above. Give microphone permission.</li>
+            <li>Click 'Start recording/streaming' and try to draw something on the canvas using
+                the tools given.
+            </li>
+            <li>
+                To watch how streaming is working, click on 'Go to player' button which opens
+                'ChalkPix Player' in new tab. Select 'Stream' radio button.
+                Enter the meeting id of recording in given text field 
+                and click submit. Give microphone permission. Once permission is given, you should be
+                able to watch the recording live. 
+            </li>
+            <li>
+                If you want to store the recording and view it, press 'Stop Recording/Streaming' button 
+                in recording tab. The 'Download .cpx' button should be enabled. Click on it to 
+                download .cpx file. Then, go to player as mentioned in previous point and click on 
+                'Archive' radio button. Upload the file using 'browse' button and press play.
+            </li>
+        </ul>
+        <br><br>
+        <h2>Dependencies</h2>
+        <ul>
+            <li><span class="font-weight-bold">KonvaJS</span> - Wrapper library over HTML5 Canvas2D </li>
+            <li><span class="font-weight-bold">PeerJS</span> - Wrapper library over WebRTC</li>
+            <li><span class="font-weight-bold">Font Awesome</span> - Icon Library</li>
+        </ul>
+    </div>
+    <br><br><br>
+    <small>Created by Rahul Valluri. Last Updated - Jan 2021</small>
+</body>
+</html>
