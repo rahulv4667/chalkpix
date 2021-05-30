@@ -53,7 +53,7 @@ li #navButton {
   align-self: center;
 }
 
-#navButton, #cpxDownload {
+#navButton, #cpxDownload, #cpxDownloadVideo {
   border-radius: 5px;
   border: none;
   background-color: green;
@@ -62,15 +62,15 @@ li #navButton {
   text-decoration-color: white;
 }
 
-#cpxDownload {
+#cpxDownload, #cpxDownloadVideo {
   border-radius: 0;
 }
 
-#cpxDownload:disabled {
+#cpxDownload:disabled, #cpxDownloadVideo:disabled {
   background-color: lightgreen;
 }
 
-#cpxDownload:disabled:hover {
+#cpxDownload:disabled:hover, #cpxDownloadVideo:disabled:hover {
   background-color: lightgreen;
   color:white;
 }
@@ -85,7 +85,7 @@ label {
   color: white;
 }
 
-#navButton:hover, #cpxDownload:hover {
+#navButton:hover, #cpxDownload:hover, #cpxDownloadVideo:hover {
   transition-duration: 500ms;
   background-color: aliceblue;
   color:black;

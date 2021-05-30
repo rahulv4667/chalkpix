@@ -1,6 +1,8 @@
 const default_fill = '#ffffffff';
 const default_stroke = '#808080ff';
 const default_stroke_width = 2;
+const mediaSource = new MediaSource();
+mediaSource.addEventListener('sourceopen', handleVideoSourceOpen, false);
 
 let circle_counter = 0;
 let rect_counter = 0;
@@ -16,6 +18,32 @@ let isRecording = false;
 let hasAudioPermission = false;
 let audioRecorder = null;
 let audioblob = null;
+
+let canvasStream = null;
+let mediaRecorder = null;
+let recordedBlobs = null;
+let sourceBuffer = null;
+
+// handling source open for media source(video recording)
+function handleVideoSourceOpen(event) {
+  console.log(`MediaSource Opened`);
+  sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
+  console.log('Source Buffer:', sourceBuffer);
+}
+
+// updating video blob as and when available
+function handleVideoDataAvailable(event) {
+  if(event.data && event.data.size > 0) {
+    recordedBlobs.push(event.data);
+  }
+}
+
+// stopping video recording
+function handleVideoStop(event) {
+  console.log('Recorder stopped: ', event);
+  // const superBuffer = new Blob(recordedBlobs, {type:'video/webm'});
+  // video.src = window.URL.createObjectURL(superBuffer);
+}
 
 // setting up observability for recording array to update push results to peers
 recording_array.push = function() {
@@ -175,6 +203,7 @@ let selected_transformer = new Konva.Transformer({
     enabledAnchors: ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'middle-left',
                         'middle-right', 'top-center', 'bottom-center'],
 });
+
 layer.add(selected_transformer);
 layerBackgroundRect.on('mousedown touchstart click', function(e) {
     switch(mouse_mode) {
@@ -329,6 +358,7 @@ laserBtn.addEventListener('click', (e) => {
     }
 
     stage.on('mousemove', function() {
+      
         let pos = stage.getPointerPosition();
         menuNode.style.display='none';
         laser.x(pos.x);
@@ -482,7 +512,7 @@ function addRectangle() {
 
     rect.on('transform', function(evt) {
       // console.log('tranform', rect.getAttrs());
-      
+      console.log(selected_transformer.getActiveAnchor());
       if(isRecording) {
         recording_array.push({
           ts: Date.now() - last_activity_timestamp,
@@ -565,6 +595,7 @@ function addCircle() {
     });
 
     circle.on('transform', function() {
+
       if(isRecording) {
         recording_array.push({
           ts: Date.now() - last_activity_timestamp,
@@ -1253,6 +1284,8 @@ stage.on('contextmenu', function (e) {
   // console.log(menuNode.style.top, menuNode.style.left);
 });
 
+canvasStream =layer.getCanvas()._canvas.captureStream();
+
 function generateBlob() {
   const json_string = JSON.stringify(recording_array, null, 2);
   const length = json_string.length;
@@ -1279,12 +1312,38 @@ function generateBlob() {
     link.click();
     // cpxbutton.disabled=true;
   }
+
+  // video download code
+  const videoBlob = new Blob(recordedBlobs, {type: 'video/webm'});
+  const videoUrl = window.URL.createObjectURL(videoBlob);
+
+  const videoButton = document.getElementById('cpxDownloadVideo');
+  videoButton.disabled = false;
+  videoButton.onclick = function() {
+    const vlink = document.createElement('a');
+    vlink.href = videoUrl;
+    vlink.download = "scene.webm";
+
+    document.body.appendChild(vlink);
+    vlink.click();
+  }
+  
 }
 
 record_button.addEventListener('click', function(e) {
   if(!hasAudioPermission) return;
   if(!isRecording) {
     isRecording = true;
+    
+    // video recording setup 
+    let options = {mimeType: 'video/webm'};
+    mediaRecorder = new MediaRecorder(canvasStream, options);
+    recordedBlobs = [];
+    mediaRecorder.onstop = handleVideoStop;
+    mediaRecorder.ondataavailable = handleVideoDataAvailable;
+    mediaRecorder.start(100);
+    console.log('Media Recorder started: ', mediaRecorder);
+
     audioRecorder.start(1000);
     console.log(audioRecorder.state);
     last_activity_timestamp=Date.now();
@@ -1303,7 +1362,14 @@ record_button.addEventListener('click', function(e) {
     audioRecorder.stop();
     console.log(audioRecorder.state);
     console.log(`Audio chunks size: ${audioChunks.length}`);
+
+    // getting video recording
+    mediaRecorder.stop();
+
+    // generating cpx and video blob
     generateBlob();
+
+    // resetting
     document.getElementById('status').innerHTML = `Idle`;
     isRecording=false;
     recording_array = [];
