@@ -1,0 +1,30 @@
+{
+  "name": "chalkpix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "build": "tsc --build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahulv4667/chalkpix.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rahulv4667/chalkpix/issues"
+  },
+  "homepage": "https://github.com/rahulv4667/chalkpix#readme",
+  "devDependencies": {
+    "@types/dom-mediacapture-record": "^1.0.7",
+    "konva": "^8.0.4",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "peerjs": "^1.3.2",
+    "vanilla-picker": "^2.11.2"
+  }
+}
